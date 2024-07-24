@@ -15,14 +15,13 @@ import lombok.NoArgsConstructor;
 public class Furniture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "furniture_id")
+    @Column(name="furniture_id")
     private int id;
     private String name;
     private String description;
     private double price;
     private int stock;
 
-    @ManyToOne
-    @JoinColumn(name="cartItem_id")
+    @OneToOne(mappedBy = "furniture")
     private CartItem cartItem;
 }

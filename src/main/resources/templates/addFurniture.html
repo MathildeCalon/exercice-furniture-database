@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <span th:replace="~{index :: bootstrap}"></span>
+    <meta charset="UTF-8">
+    <title>Ajouter un article</title>
+</head>
+
+<body class="container">
+<h1 class="h1">Ajouter un article</h1>
+<form th:action="@{/addFurniture}" method="post" th:object="${furniture}">
+    <input id="id" name="id" th:field="*{id}" th:value="${updatedFurniture.getId()}" hidden/>
+
+    <div class="mb-3">
+        <label for="name" class="form-label">Nom :</label>
+        <input id="name" name="name" th:field="*{name}" type="text" class="form-control" th:value="${updatedFurniture.getName()}">
+    </div>
+
+    <div class="mb-3">
+        <label for="description" class="form-label">Description :</label>
+        <input id="description" class="form-control" name="description" th:value="${updatedFurniture.getDescription()}" th:field="*{description}" type="text">
+    </div>
+
+    <div class="mb-3">
+        <label for="price" class="form-label">Prix :</label>
+        <input id="price" class="form-control" th:value="${updatedFurniture.getPrice()}" name="price" th:field="*{price}" type="number">
+    </div>
+
+    <div class="mb-3">
+        <label for="stock" class="form-label">Stock :</label>
+        <input id="stock" class="form-control" th:value="${updatedFurniture.getStock()}" name="stock" th:field="*{stock}" type="number">
+    </div>
+    <button class="btn btn-primary">Ajouter</button>
+</form>
+<a th:href="@{/}"><button class="btn btn-secondary">Retour à l'accueil</button></a>
+
+</body>
+</html>

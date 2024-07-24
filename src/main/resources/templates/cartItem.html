@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <span th:replace="~{index :: bootstrap}"></span>
+    <meta charset="UTF-8">
+    <title>Liste des articles de votre panier</title>
+</head>
+<body class="container">
+<h1 class="h1">Votre panier</h1>
+<div th:if="${items != null || items.size()<0}">
+    <ul th:each="i : ${items}">
+        <li> <span th:text="${i.id}"/> <span th:text="${i.quantity}"/></li>
+    </ul>
+
+</div>
+</body>
+</html>

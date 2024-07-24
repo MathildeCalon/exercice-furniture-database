@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <span th:replace="~{index :: bootstrap}"></span>
+    <meta charset="UTF-8">
+    <title>Liste des fournitures</title>
+</head>
+<body class="container">
+<h1 class="h1">Liste de nos fournitures</h1>
+<div th:if="${furnitures != null || furnitures.size()<0}">
+    <div th:each="f : ${furnitures}">
+        <ul>
+            <li th:text="${f.name}"></li>
+            <li th:text="${f.description}"></li>
+            <li th:text="${f.price}"></li>
+        </ul>
+
+        <a th:href="@{/addToCart}"><button class="btn btn-primary">Ajouter au panier</button></a>
+        <a th:href="@{/addFurniture/{id}(id = ${f.id})}"><button class="btn btn-warning">Modifier le meuble</button></a>
+        <a th:href="@{/deleteFurniture/{id}(id = ${f.getId()})}"><button class="btn btn-danger">Supprimer le meuble</button></a>
+
+
+    </div>
+
+    <a th:href="@{/}"><button class="btn btn-secondary">Retour à l'accueil</button></a>
+    <a th:href="@{/cartitem}"><button class="btn btn-secondary">Votre panier</button></a>
+    <a th:href="@{/addFurniture}"><button class="btn btn-secondary">Ajouter un meuble</button></a>
+</div>
+</body>
+</html>

@@ -6,8 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Entity
 @Table
 @Data
@@ -17,10 +15,11 @@ import java.util.List;
 public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="cartItem_id")
+    @Column(name = "cartItem_id")
     private int id;
     private int quantity;
 
-    @OneToMany(mappedBy = "cartItem")
-    private List<Furniture> furnitures;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "furniture_id", referencedColumnName = "furniture_id")
+    private Furniture furniture;
 }
