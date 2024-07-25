@@ -11,9 +11,12 @@
 <div th:if="${!items.isEmpty()}">
     <ul th:each="i : ${items}">
         <li><span th:text="${i.quantity}"/> <span th:text="${i.furniture.getName()}"/>
-            <a th:href="@{/deleteCartItem/{id}(id = ${i.id})}">
+            <form th:action="@{/deleteCartItem}" method="post">
+                <input th:value="${i.quantity}" name="quantity" hidden>
+                <input th:value="${i.id}" name="id" hidden>
                 <button class="btn btn-warning">Supprimer du panier</button>
-            </a></li>
+            </form>
+        </li>
     </ul>
 
     <a th:href="@{/clearCart}">

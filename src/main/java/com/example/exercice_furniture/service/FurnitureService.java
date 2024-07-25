@@ -29,4 +29,14 @@ public class FurnitureService {
     public void deleteFurnitureById(int id) {
         furnitureRepository.deleteById(id);
     }
+
+    public void decreaseStock(Furniture furniture, int stock) {
+        furniture.setStock(furniture.getStock() - stock);
+        furnitureRepository.save(furniture);
+    }
+
+    public void increaseStock(Furniture furniture, int stock) {
+        furniture.setStock(furniture.getStock() + stock);
+        furnitureRepository.save(furniture);
+    }
 }
