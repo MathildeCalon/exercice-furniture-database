@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class CartItemController {
     private final FurnitureService furnitureService;
@@ -44,6 +46,10 @@ public class CartItemController {
 
     @GetMapping("/clearCart")
     public String clearCart() {
+        List<CartItem> cartItems = cartItemService.getAllCartItems();
+        for (CartItem cartItem : cartItems) {
+            furnitureService.increaseStock(cartItem.getFurniture(), cartItem.getQuantity());
+        };
         cartItemService.clearCart();
         return "redirect:/cartitem";
     }

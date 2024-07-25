@@ -32,6 +32,7 @@ public class CartItemService {
     }
 
     public void clearCart(){
+
         cartItemRepository.deleteAll();
     }
 }
