@@ -1,5 +1,6 @@
 package com.example.exercice_furniture.controller;
 
+import com.example.exercice_furniture.entity.CartItem;
 import com.example.exercice_furniture.entity.Furniture;
 import com.example.exercice_furniture.service.FurnitureService;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,7 @@ public class FurnitureController {
     @GetMapping("/furnitureList")
     public String furnitureList(Model model) {
         model.addAttribute("furnitures", furnitureService.findAll());
+        model.addAttribute("cartItem", new CartItem());
         return "furnitureList";
     }
 
@@ -36,14 +38,19 @@ public class FurnitureController {
 
     @GetMapping("/addFurniture/{id}")
     public String updateFurniture(Model model, @PathVariable int id) {
-        model.addAttribute("updatedFurniture", furnitureService.findFurnitureById(id));
-        model.addAttribute("furniture", new Furniture());
+        model.addAttribute("furniture", furnitureService.findFurnitureById(id));
         return "addFurniture";
     }
 
     @PostMapping("/addFurniture")
     public String addFurniture(@ModelAttribute Furniture furniture) {
         furnitureService.addFurniture(furniture);
+        return "redirect:/furnitureList";
+    }
+
+    @GetMapping("/deleteFurniture/{id}")
+    public String deleteFurniture(@PathVariable int id) {
+        furnitureService.deleteFurnitureById(id);
         return "redirect:/furnitureList";
     }
 

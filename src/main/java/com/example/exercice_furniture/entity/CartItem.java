@@ -19,7 +19,7 @@ public class CartItem {
     private int id;
     private int quantity;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "furniture_id", referencedColumnName = "furniture_id")
     private Furniture furniture;
 }
