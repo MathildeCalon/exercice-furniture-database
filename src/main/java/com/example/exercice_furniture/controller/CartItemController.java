@@ -46,10 +46,6 @@ public class CartItemController {
 
     @GetMapping("/clearCart")
     public String clearCart() {
-        List<CartItem> cartItems = cartItemService.getAllCartItems();
-        for (CartItem cartItem : cartItems) {
-            furnitureService.increaseStock(cartItem.getFurniture(), cartItem.getQuantity());
-        };
         cartItemService.clearCart();
         return "redirect:/cartitem";
     }

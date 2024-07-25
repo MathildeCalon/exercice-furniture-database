@@ -32,7 +32,10 @@ public class CartItemService {
     }
 
     public void clearCart(){
-
+        List<CartItem> cartItems = getAllCartItems();
+        for (CartItem cartItem : cartItems) {
+            furnitureService.increaseStock(cartItem.getFurniture(), cartItem.getQuantity());
+        };
         cartItemRepository.deleteAll();
     }
 }
